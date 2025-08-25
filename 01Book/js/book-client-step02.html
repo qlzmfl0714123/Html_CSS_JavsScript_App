@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>도서 등록</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 40px;
+            background-color: #f9f9f9;
+        }
+        h1 { 
+            color: #333; 
+            text-align: center;
+        }
+        h2 {
+            color: #666;
+        }
+        form { 
+            max-width: 500px; 
+            margin: 0 auto; 
+            background: #fff; 
+            padding: 20px; 
+            border-radius: 10px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        label { 
+            display: inline-block; 
+            width: 100px; 
+            font-weight: bold; 
+        }
+        input { 
+            width: 70%; 
+            padding: 8px; 
+            margin: 8px 0; 
+            border: 1px solid #ccc; 
+            border-radius: 5px;
+        }
+        button { 
+            padding: 10px 20px; 
+            border: none; 
+            border-radius: 5px; 
+            background-color: #4CAF50; 
+            color: white; 
+            font-size: 14px; 
+            cursor: pointer;
+        }
+        button:hover { 
+            background-color: #45a049; 
+        }
+        table { 
+            margin-top: 30px; 
+            border-collapse: collapse; 
+            width: 100%;
+        }
+        th, td { 
+            border: 1px solid #ccc; 
+            text-align: center; 
+            padding: 10px; 
+        }
+        th { 
+            background-color: #f2f2f2; 
+            font-weight: bold;
+        }
+        tr:hover { 
+            background-color: #f9f9f9; 
+        }
+    </style>
+</head>
+<body>
+    <h1>도서 등록</h1>
+    <form action="#" method="post">
+        <label for="title">제목:</label>
+        <input type="text" id="title" name="title" required><br>
+
+        <label for="author">저자:</label>
+        <input type="text" id="author" name="author" required><br>
+
+        <label for="isbn">ISBN:</label>
+        <input type="text" id="isbn" name="isbn" required><br>
+
+        <label for="price">가격:</label>
+        <input type="text" id="price" name="price" required><br>
+
+        <label for="publishDate">출판일:</label>
+        <input type="date" id="publishDate" name="publishDate" required><br>
+
+        <div style="text-align:center; margin-top:20px;">
+            <button type="submit">등록</button>
+        </div>
+    </form>
+
+    <h2>도서 목록</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>제목</th>
+                <th>저자</th>
+                <th>ISBN</th>
+                <th>가격</th>
+                <th>출판일</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>스프링 부트 입문</td>
+                <td>홍길동</td>
+                <td>9788956746425</td>
+                <td>30,000원</td>
+                <td>2025-05-07</td>
+            </tr>
+            <tr>
+                <td>JPA 프로그래밍</td>
+                <td>박둘리</td>
+                <td>9788956746432</td>
+                <td>35,000원</td>
+                <td>2025-04-30</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
