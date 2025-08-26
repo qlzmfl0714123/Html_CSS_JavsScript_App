@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>Book Form - Step04</title>
+  <link rel="stylesheet" href="css/form.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>도서 등록 (Step04 - 내부 JS + FormData)</h1>
+
+    <div class="form-container">
+      <form id="bookForm">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="title">제목 (title)</label>
+            <input id="title" name="title" type="text" required />
+          </div>
+          <div class="form-group">
+            <label for="author">저자 (author)</label>
+            <input id="author" name="author" type="text" required />
+          </div>
+          <div class="form-group">
+            <label for="isbn">ISBN (isbn)</label>
+            <input id="isbn" name="isbn" type="text" required />
+          </div>
+          <div class="form-group">
+            <label for="price">가격 (price)</label>
+            <input id="price" name="price" type="text" required />
+          </div>
+          <div class="form-group">
+            <label for="publishDate">출판일 (publishDate)</label>
+            <input id="publishDate" name="publishDate" type="date" required />
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="submit">등록</button>
+          <button type="button" id="loadAll" class="secondary">전체조회</button>
+        </div>
+        <p id="message" class="helper"></p>
+      </form>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>제목</th><th>저자</th><th>ISBN</th><th>가격</th><th>출판일</th>
+          </tr>
+        </thead>
+        <tbody id="bookRows"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+
+    const API_BASE_URL = "http://localhost:8080";
+    const $form = document.getElementById("bookForm");
+    const $rows = document.getElementById("bookRows");
+    const $msg  = document.getElementById("message");
+    const $loadAll = document.getElementById("loadAll");
+
+    function renderRows(list = []) {
+      $rows.innerHTML = list.map(b => `
+        <tr>
+          <td>${b.title ?? ""}</td>
+          <td>${b.author ?? ""}</td>
+          <td>${b.isbn ?? ""}</td>
+          <td>${b.price ?? ""}</td>
+          <td>${b.publishDate ?? ""}</td>
+        </tr>
+      `).join("");
+    }
+
+    $form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      $msg.textContent = "";
+
+      const fd = new FormData($form);
+      const payload = Object.fromEntries(fd.entries());
+
+      if (!payload.title || !payload.author || !payload.isbn || !payload.price || !payload.publishDate) {
+        $msg.textContent = "모든 값을 입력해주세요.";
+        $msg.className = "error";
+        return;
+      }
+
+      if (isNaN(Number(payload.price))) {
+        $msg.textContent = "가격은 숫자여야 합니다.";
+        $msg.className = "error";
+        return;
+      }
+
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/books`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        if (!res.ok) throw new Error(`등록 실패: ${res.status}`);
+        const saved = await res.json();
+        $msg.textContent = "등록 성공!";
+        $msg.className = "success";
+        renderRows([saved]); 
+        $form.reset();
+      } catch (err) {
+        $msg.textContent = err.message;
+        $msg.className = "error";
+      }
+    });
+
+    // 전체 조회
+    $loadAll.addEventListener("click", async () => {
+      $msg.textContent = "";
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/books`);
+        if (!res.ok) throw new Error(`조회 실패: ${res.status}`);
+        const list = await res.json();
+        renderRows(list);
+      } catch (err) {
+        $msg.textContent = err.message;
+        $msg.className = "error";
+      }
+    });
+  </script>
+</body>
+</html>
