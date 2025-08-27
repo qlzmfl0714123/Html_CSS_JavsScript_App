@@ -111,7 +111,6 @@
       }
     });
 
-    // 전체 조회
     $loadAll.addEventListener("click", async () => {
       $msg.textContent = "";
       try {

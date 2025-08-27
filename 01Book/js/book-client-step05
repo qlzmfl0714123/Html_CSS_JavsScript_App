@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>Book Form - Step05</title>
+  <link rel="stylesheet" href="css/form.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>도서 등록 (Step05 - External JS + 검증 + fetch)</h1>
+
+    <div class="form-container">
+      <form id="bookForm">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="title">제목 (title)</label>
+            <input id="title" name="title" type="text" required />
+          </div>
+          <div class="form-group">
+            <label for="author">저자 (author)</label>
+            <input id="author" name="author" type="text" required />
+          </div>
+          <div class="form-group">
+            <label for="isbn">ISBN (isbn)</label>
+            <input id="isbn" name="isbn" type="text" required />
+          </div>
+          <div class="form-group">
+            <label for="price">가격 (price)</label>
+            <input id="price" name="price" type="text" required />
+          </div>
+          <div class="form-group">
+            <label for="publishDate">출판일 (publishDate)</label>
+            <input id="publishDate" name="publishDate" type="date" required />
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="submit">등록</button>
+          <button type="button" id="loadAll" class="secondary">전체조회</button>
+        </div>
+        <p id="message" class="helper"></p>
+      </form>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>제목</th><th>저자</th><th>ISBN</th><th>가격</th><th>출판일</th>
+          </tr>
+        </thead>
+        <tbody id="bookRows"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    const API_BASE_URL = "http://localhost:8080";
+  </script>
+  <script src="js/form.js"></script>
+</body>
+</html>
