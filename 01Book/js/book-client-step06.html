@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>Book Form - Step06 (CRUD)</title>
+  <link rel="stylesheet" href="css/form.css" />
+  <style>
+    .hidden { display: none; }
+    .muted { color:#6b7280; font-size:12px; }
+    .badge-edit { display:inline-block; padding:2px 8px; border-radius:999px; background:#fff3c4; color:#8a6d3b; margin-left:8px; font-size:12px; }
+    .row-actions { display:flex; gap:8px; }
+    .row-actions button { padding:6px 8px; font-size:12px; }
+    .danger { background:#ef4444 !important; color:#fff; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>
+      도서 관리 (Step06 - Create / Read / Update / Delete) 
+    </h1>
+
+    <div class="form-container">
+      <form id="bookForm">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="title">제목 (title)</label>
+            <input id="title" name="title" type="text" required />
+          </div>
+          <div class="form-group">
+            <label for="author">저자 (author)</label>
+            <input id="author" name="author" type="text" required />
+          </div>
+          <div class="form-group">
+            <label for="isbn">ISBN (isbn)</label>
+            <input id="isbn" name="isbn" type="text" required />
+            <div class="muted">예: 9788956746425 또는 978-8956746425</div>
+          </div>
+          <div class="form-group">
+            <label for="price">가격 (price)</label>
+            <input id="price" name="price" type="text" required />
+          </div>
+          <div class="form-group">
+            <label for="publishDate">출판일 (publishDate)</label>
+            <input id="publishDate" name="publishDate" type="date" required />
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="submitButton" type="submit">등록</button>
+          <button id="cancelButton" type="button" class="secondary hidden">취소</button>
+          <button id="loadAll" type="button" class="secondary">전체조회</button>
+        </div>
+        <p id="message" class="helper"></p>
+      </form>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th><th>제목</th><th>저자</th><th>ISBN</th><th>가격</th><th>출판일</th><th>관리</th>
+          </tr>
+        </thead>
+        <tbody id="bookRows"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    const API_BASE_URL = "http://localhost:8080";
+  </script>
+  <script src="js/form.js"></script>
+</body>
+</html>
