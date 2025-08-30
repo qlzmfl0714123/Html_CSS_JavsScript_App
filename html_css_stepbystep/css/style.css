@@ -1,24 +1,105 @@
-﻿body {
-    font-family: "맑은 고딕", "돋움", "굴림";               
-    /*
-    background: bg-color bg-image position/bg-size bg-repeat bg-origin bg-clip bg-attachment
-       bg-images : url('../images/bg.jpg') 
-       bg-repeat : no-repeat : 
-       bg-position (배경 위치) : left(가로위치-왼쪽) top(세로위치-상단) : 
-       bg-attachment (배경 고정) : fixed 페이지를 스크롤해도 배경은 움직이지 않음
-    */
-    
-    /*
-    background-size
-    : cover
-        비율 유지하며 요소 전체를 덮음
-        이미지 일부가 잘릴 수 있음
-        풀스크린 배경에 최적
-    : contain
-        비율 유지하며 요소 안에 완전 포함
-        여백이 생길 수 있음
-        로고, 아이콘에 최적
-    */
-    
+﻿* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: "Noto Sans KR", Arial, sans-serif;
+  background: url("../images/bg.jpg") center/cover fixed no-repeat;
+  color: #222;
 }
 
+#wrapper {
+  width: 820px;
+  margin: 28px auto;
+}
+
+header h1 {
+  margin: 0 0 10px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+nav {
+  background: rgba(0,0,0,0.75);
+  border-radius: 8px 8px 0 0;
+}
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+nav ul li { margin: 0; }
+nav a {
+  display: block;
+  padding: 12px 20px;
+  color: #ddd;
+  text-decoration: none;
+  font-weight: 600;
+}
+nav a:hover { background: #fff; color: #000; }
+nav a.current { background: #fff; color: #000; }
+
+article {
+  background: rgba(255,255,255,0.92);
+  padding: 26px;
+  min-height: 360px;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+h2 {
+  margin: 0 0 20px;
+  padding-left: 34px;
+  background: url("../images/icon.png") no-repeat 0 2px / 22px;
+  font-size: 22px;
+}
+
+section { line-height: 1.65; }
+section ol, section ul { margin: 10px 0 0 22px; }
+section li { margin: 6px 0; }
+
+article img {
+  float: right;
+  width: 120px;
+  margin: 8px 0 12px 18px;
+  border: 4px solid #eee;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+  transform: rotate(-8deg);
+  border-radius: 4px;
+}
+
+caption {
+  caption-side: top;
+  font-weight: 700;
+  padding: 10px 0 14px;
+}
+table {
+  width: 520px;
+  margin: 10px auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+th, td {
+  border: 1px solid #e0e0e0;
+  padding: 12px 16px;
+  font-size: 15px;
+}
+th {
+  background: #f6f6f6;
+  text-align: left;
+  width: 90px;
+}
+tbody tr:hover { background: #fafafa; }
+
+footer {
+  margin-top: 12px;
+  background: rgba(0,0,0,0.75);
+  color: #ddd;
+  padding: 14px 18px;
+  font-size: 13px;
+  border-radius: 0 0 8px 8px;
+}
